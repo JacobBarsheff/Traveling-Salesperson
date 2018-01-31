@@ -42,7 +42,7 @@ namespace Demo_TheTravelingSalesperson
         /// </summary>
         private void InitializeConsole()
         {
-            ConsoleUtil.WindowTitle = "Laughing Leaf Productions";
+            ConsoleUtil.WindowTitle = "New Ocean LLC.";
             ConsoleUtil.HeaderText = "The Traveling Salesperson Application";
         }
 
@@ -177,7 +177,7 @@ namespace Demo_TheTravelingSalesperson
             }
             else
             {
-                ConsoleUtil.DisplayMessage($"You have exceeded the max number of attempts ({MAXIMUM_ATTEMPTS}) to setting the number of products in your stock.");
+                ConsoleUtil.DisplayMessage($"The Max Number of attempts ({MAXIMUM_ATTEMPTS}) to setting stock count has been exceeded.");
                 ConsoleUtil.DisplayMessage("By default, the number of products in your inventory are now set to zero.");
                 salesperson.CurrentStock.AddProducts(0);
                 DisplayContinuePrompt();
@@ -316,7 +316,8 @@ namespace Demo_TheTravelingSalesperson
             //
             ConsoleUtil.DisplayMessage("Buying " + product.Type.ToString() + " products.");
             ConsoleUtil.DisplayMessage("");
-
+            ConsoleUtil.DisplayMessage("Current Stock: " + product.NumberOfUnits.ToString() + " units.");
+            ConsoleUtil.DisplayMessage("");
             if (!ConsoleValidator.TryGetIntegerFromUser(MINIMUM_BUYSELL_AMOUNT, MAXIMUM_BUYSELL_AMOUNT, MAXIMUM_ATTEMPTS, "products", out int numberOfUnitsToBuy))
             {
                 ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products to buy.");
@@ -346,9 +347,11 @@ namespace Demo_TheTravelingSalesperson
             //
             // get number of products to sell
             //
+            
             ConsoleUtil.DisplayMessage("Selling " + product.Type.ToString() + " products.");
             ConsoleUtil.DisplayMessage("");
-
+            ConsoleUtil.DisplayMessage("Current Stock: " + product.NumberOfUnits.ToString() + " units.");
+            ConsoleUtil.DisplayMessage("");
             if (!ConsoleValidator.TryGetIntegerFromUser(MINIMUM_BUYSELL_AMOUNT, MAXIMUM_BUYSELL_AMOUNT, MAXIMUM_ATTEMPTS, "products", out int numberOfUnitsToSell))
             {
                 ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products to sell.");
@@ -373,6 +376,7 @@ namespace Demo_TheTravelingSalesperson
         public void DisplayBackorderNotification(Product product, int numberOfUnitsSold)
         {
             ConsoleUtil.HeaderText = "Inventory Backorder Notification";
+            ConsoleUtil.HeaderBackgroundColor = ConsoleColor.Red;
             ConsoleUtil.DisplayReset();
 
             int numberOfUnitsBackordered = Math.Abs(product.NumberOfUnits);
@@ -383,6 +387,7 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayMessage("Products on Backorder: " + numberOfUnitsBackordered);
 
             DisplayContinuePrompt();
+            ConsoleUtil.HeaderBackgroundColor = ConsoleColor.Gray;
         }
 
         /// <summary>
