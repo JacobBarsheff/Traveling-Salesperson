@@ -382,6 +382,8 @@ namespace Demo_TheTravelingSalesperson
             int numberOfUnitsBackordered = Math.Abs(product.NumberOfUnits);
             int numberOfUnitsShipped = numberOfUnitsSold - numberOfUnitsBackordered;
 
+            Console.ForegroundColor = ConsoleColor.Red;
+
             ConsoleUtil.DisplayMessage("Products Sold: " + numberOfUnitsSold);
             ConsoleUtil.DisplayMessage("Products Shipped: " + numberOfUnitsShipped);
             ConsoleUtil.DisplayMessage("Products on Backorder: " + numberOfUnitsBackordered);
